@@ -22,7 +22,7 @@ namespace MushiCore.Editor
         /// <param name="appendPostfix">postfix to append to end of name (if user provided name does not contain)</param>
         /// <param name="appendPrefix">prefix to append to end of name (if user provided name does not contain)</param>
         /// <param name="templateProcessors">custom template string processors</param>
-        /// <param name="onAssetCreated">Callback when the asset has been created</param>
+        /// <param name="onAssetCreated">Callback when the asset has been created, passing back the path</param>
         public static void CreateNamedAssetFromTemplate(
             string templatePath,
             string defaultPath,
@@ -61,21 +61,33 @@ namespace MushiCore.Editor
         /// </summary>
         /// <param name="templatePath">Path of template file</param>
         /// <param name="generatePath">Path of where the file should be created</param>
-        /// <param name="templateProcessors">Any string processors to apply to the template</param>
+        /// <param name="contentProcessors">Any string processors to apply to the template</param>
+        /// <param name="nameProcessors"></param>
         public static void CreateAssetFromTemplate(
             string templatePath,
             string generatePath,
-            TemplateStringProcessor[] templateProcessors = null)
+            TemplateStringProcessor[] contentProcessors = null,
+            TemplateStringProcessor[] nameProcessors = null)
         {
             string fullTemplatePath = Path.GetFullPath(templatePath);
             var finalContent = new StringBuilder(File.ReadAllText(fullTemplatePath));
+            
+            var name = new StringBuilder(Path.GetFileName(generatePath));
+            var directory = Path.GetDirectoryName(generatePath);
 
-            foreach (var processor in templateProcessors)
+            foreach (var processor in contentProcessors)
             {
                 processor.ProcessString(finalContent);
             }
 
-            AssetCreateUtility.WriteTextAsset(generatePath, finalContent.ToString());
+            foreach (var nameProcessor in nameProcessors)
+            {
+                nameProcessor.ProcessString(name);
+            }
+
+            AssetCreateUtility.WriteTextAsset(
+                $"{directory}/{name}", 
+                finalContent.ToString());
         }
 
         #region String Processors

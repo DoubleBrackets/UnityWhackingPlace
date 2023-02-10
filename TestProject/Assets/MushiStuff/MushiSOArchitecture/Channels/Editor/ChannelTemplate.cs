@@ -44,7 +44,7 @@ namespace MushiSOArchitecture.Editor
             AssetTemplateUtility.CreateAssetFromTemplate(
                 $"{path}/GenericChannelsScriptTemplate.txt",
                 $"{genericChannelsPath}/GenericChannelsSO.cs",
-                templateProcessors: processors
+                contentProcessors: processors
             );
         }
 

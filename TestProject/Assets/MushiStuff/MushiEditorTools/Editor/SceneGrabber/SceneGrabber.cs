@@ -25,7 +25,7 @@ namespace MushiEditorTools.SceneGrabber
         [SerializeField] private VisualTreeAsset visualTree;
 
         [MenuItem("MushiTools/SceneGrabber")]
-        public static void ShowExample()
+        public static void ShowWindow()
         {
             SceneGrabber wnd = GetWindow<SceneGrabber>("Scene Grabber");
         }
@@ -33,10 +33,12 @@ namespace MushiEditorTools.SceneGrabber
         private VisualElement sceneList;
         private VisualElement searchParameters;
 
-        private string folderPath = "Assets/Scenes";
+        private string folderPath;
+        private const string searchFieldPrefsKey = "SceneGrabberSearchPath";
 
         public void CreateGUI()
         {
+            folderPath = EditorPrefs.GetString(searchFieldPrefsKey, "Assets/Scenes");
             // Each editor window contains a root VisualElement object
             VisualElement root = rootVisualElement;
 
@@ -58,12 +60,13 @@ namespace MushiEditorTools.SceneGrabber
             {
                 folderPath = changeEvent.newValue;
                 GenerateSceneListFromAssets();
+                EditorPrefs.SetString(searchFieldPrefsKey, changeEvent.newValue);
             });
 
             // Initial setup
             GenerateSceneListFromAssets();
         }
-
+        
         private void GenerateSceneListFromAssets()
         {
             var scenes = FindScenesData();

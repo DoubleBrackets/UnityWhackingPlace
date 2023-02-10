@@ -1,0 +1,82 @@
+{
+    "name": "New Controls",
+    "maps": [
+        {
+            "name": "Default",
+            "id": "c947f711-e349-4c1a-9b81-d46a9f33ae28",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "33e66264-b830-466b-b36e-b422615ab77c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MouseXVector",
+                    "type": "Value",
+                    "id": "1c6f0e00-9e8f-4d47-bac5-db597d99af95",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9d37dfd0-18c2-4249-b267-782e46d1e389",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "d7ffe261-597c-446f-bb10-c267499894c3",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseXVector",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "390af955-9fba-41a6-bf6f-3a7345149b13",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseXVector",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "c8142685-8673-43a0-a7d7-5278bef7bacb",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseXVector",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": []
+        }
+    ]
+}

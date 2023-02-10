@@ -1,0 +1,42 @@
+﻿title: Start
+position: -175,-313
+---
+<<set $test to 5>>
+Companion: [Test window=69/]Hi there! What do you feel like <shake><swing>doing</> today? #line:0b10528 
+
+-> Me: I want too engage in funny business
+    <<jump Swimming>>
+-> Player: [Test window=34/]I want to go swimming. <<if $test > 5>> #line:04ff66d 
+    Companion: Okay, let's go swimming. #line:034e6ee 
+    <<jump Swimming>>
+-> Player: I'd prefer to go hiking. #line:082d124 
+    Companion: Cool, we'll go hiking then. #line:08ceb81 
+    <<jump Hiking>>
+===
+title: Swimming
+position: -254,-33
+---
+Companion: Where do you want to swim? #line:0763415 
+-> Player: The lake! #line:008ba55 
+    Companion: Nice! It's a great day for it. #line:09f0314 
+-> Player: The swimming pool! #line:019ca11 
+    Companion: Oh, awesome! I heard they installed a new slide. #line:09f5d6a 
+
+<<jump Done>>
+===
+title: Hiking
+position: 48,37
+---
+Companion: Have you got your hiking boots ready? #line:07d71a0 
+-> Player: Yes. #line:03d450d 
+    Companion: Great, let's go! #line:07364c0 
+->Player: No. #line:03b631e 
+    Companion: We can swing by your place and pick them up! #line:00f4200 
+
+<<jump Done>>
+===
+title: Done
+position: -161,300
+---
+Player: Sounds good! #line:05f7c79 
+===

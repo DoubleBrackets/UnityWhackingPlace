@@ -1,0 +1,63 @@
+<#EVENTBODY>
+public abstract class GenericEventChannelSO#PARAMS# : DescriptionBaseSO
+{
+    public event Action#PARAMS# OnRaised;
+    public bool HasListeners => OnRaised != null;
+    
+    public virtual void RaiseEvent(#RAISE_PARAMS#)
+    {
+        if (OnRaised != null)
+        {
+            OnRaised.Invoke(#INVOKE_PARAMS#);
+        }
+        else
+        {
+            NoListenerMessage();
+        }
+    }
+    
+    protected virtual void NoListenerMessage()
+    {
+        Debug.LogWarning($"Event Channel {name} was raised but had no listeners.");
+    }
+}
+<#>
+
+<#FUNCBODY>
+public abstract class GenericFuncChannelSO<#PARAMS#TResult> : DescriptionBaseSO
+{
+    public event Func<#PARAMS#TResult> OnCalled;
+    public bool HasListeners => OnCalled != null;
+    
+    public virtual TResult CallFunc(#RAISE_PARAMS#)
+    {
+        if (OnCalled != null)
+        {
+            return OnCalled.Invoke(#INVOKE_PARAMS#);
+        }
+        else
+        {
+            NoListenerMessage();
+            return DefaultReturn();
+        }
+    }
+    
+    protected virtual TResult DefaultReturn()
+    {
+        return default(TResult);   
+    }
+    
+    protected virtual void NoListenerMessage()
+    {
+        Debug.LogWarning($"Func Channel {name} was raised but had no listeners.");
+    }
+}
+<#>
+
+<=>
+using System;
+using UnityEngine;
+
+// This is generated from a template, so manual changes may be overriden
+
+<=>

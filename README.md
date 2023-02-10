@@ -1,2 +1,2 @@
-# UnityToolStash
-Some unity tools and random reusable code bits
+# UnityTestingPlace
+Repo for messing around with Unity and trying random stuff.

@@ -12,7 +12,7 @@ using HandleUtility = UnityEditor.HandleUtility;
 
 #endregion
 
-namespace Editor
+namespace EditorTools
 {
     public struct RandomSpawnData
     {
